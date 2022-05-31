@@ -2,11 +2,13 @@ const express = require('express');
 const userController = require('./controllers/userController');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const { loginMiddleware } = require('./middlewares/loginMiddleware');
-const {
+const 
+{
     displayNameValidation,
     passwordValidation,
-    emailValidation,
-    } = require('./middlewares/userMiddleware');
+    emailValidation, 
+} = require('./middlewares/userMiddleware');
+
 const validationToken = require('./middlewares/validationToken');
 
 // ...
@@ -23,7 +25,7 @@ emailValidation,
 userController.create);
 
 app.get('/user', validationToken, userController.getAll);
-
+app.get('/user/:id', validationToken, userController.getById);
 app.use(errorMiddleware);
 // ...
 
