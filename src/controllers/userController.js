@@ -20,7 +20,16 @@ const create = async (req, res, next) => {
 }
 };
 
+const getAll = async (req, res, next) => {
+  try {
+  const token = await userService.getAll();
+  return res.status(200).json(token);
+} catch (err) {
+  next(err);
+}
+};
 module.exports = {
   login,
   create,
+  getAll,
 };

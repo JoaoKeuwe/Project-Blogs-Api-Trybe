@@ -7,6 +7,7 @@ const {
     passwordValidation,
     emailValidation,
     } = require('./middlewares/userMiddleware');
+const validationToken = require('./middlewares/validationToken');
 
 // ...
 
@@ -20,6 +21,8 @@ displayNameValidation,
 passwordValidation,
 emailValidation,
 userController.create);
+
+app.get('/user', validationToken, userController.getAll);
 
 app.use(errorMiddleware);
 // ...
