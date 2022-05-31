@@ -3,6 +3,7 @@ const userController = require('./controllers/userController');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const { loginMiddleware } = require('./middlewares/loginMiddleware');
 const categoriesController = require('./controllers/categoriesController');
+const postController = require('./controllers/postController');
 const 
 {
     displayNameValidation,
@@ -29,6 +30,7 @@ app.get('/user', validationToken, userController.getAll);
 app.get('/user/:id', validationToken, userController.getById);
 app.post('/categories', validationToken, categoriesController.addCategory);
 app.get('/categories', validationToken, categoriesController.listAll);
+app.get('/post', validationToken, postController.getAll);
 
 app.use(errorMiddleware);
 // ...

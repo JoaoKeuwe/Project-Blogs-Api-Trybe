@@ -14,8 +14,8 @@ const BlogPost = (sequelize, DataTypes) => {
     published: DataTypes.DATE,
     updated: DataTypes.DATE
   }, {
-    sequelize,
-    modelName: 'BlogPost',
+    createdAt : "published",
+    updatedAt : "updated"
   });
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, {
