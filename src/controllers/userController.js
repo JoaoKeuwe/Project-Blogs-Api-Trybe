@@ -10,4 +10,17 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { login };
+const create = async (req, res, next) => {
+  try {
+ const { body } = req;
+  const token = await userService.create(body);
+  return res.status(201).json({ token });
+} catch (err) {
+  next(err);
+}
+};
+
+module.exports = {
+  login,
+  create,
+};

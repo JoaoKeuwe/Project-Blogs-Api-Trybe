@@ -10,5 +10,16 @@ const login = async (email, password) => {
     const token = generateToken({ email, password });
     return token;
 };
+const create = async (newUser) => {
+    const { email, displayName, image, password } = newUser;
+    const user = await User.findOne({ where: { email } });
+    if (user) {
+        console.log('chegou');
+       throw error(409, 'User already registered');
+    }
+   await User.create({ email, password, displayName, image });
+    const token = generateToken({ email, displayName, image });
+    return token;
+};
 
-module.exports = { login };
+module.exports = { login, create };
