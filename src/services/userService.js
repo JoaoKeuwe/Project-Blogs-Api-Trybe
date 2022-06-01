@@ -3,11 +3,13 @@ const error = require('../utils/errorMessage');
 const generateToken = require('../utils/generateJWT');
 
 const login = async (email, password) => {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne(
+        { where: { email, password }, attributes: { exclude: ['password'] } },
+);
     if (!user) {
         throw error(400, 'Invalid fields');
     }
-    const token = generateToken({ email, password });
+    const token = generateToken(user);
     return token;
 };
 const create = async (newUser) => {
